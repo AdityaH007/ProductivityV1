@@ -8,7 +8,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class FocusModeActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ class FocusModeActivity : AppCompatActivity() {
     private var isFocusModeActive = false
     private var elapsedTime: Long = 0
 
-    // ... (Other variables and methods)
+    private var isMinimizingBlocked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -35,8 +35,6 @@ class FocusModeActivity : AppCompatActivity() {
         stopButton = findViewById(R.id.stopButton)
         stopwatchTextView = findViewById(R.id.stopwatchTextView)
         handler = Handler()
-
-        // ... (Button click listeners and permission handling)
 
         startButton.setOnClickListener {
             // ... (Check notification policy access permission)
@@ -78,6 +76,47 @@ class FocusModeActivity : AppCompatActivity() {
             elapsedTime += 1000 // Update every second
             handler.postDelayed({ updateStopwatch() }, 1000)
         }
+    }
+
+    override fun onBackPressed() {
+        if (isFocusModeActive) {
+            showFocusModeActiveDialog()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onUserLeaveHint() {
+        if (isFocusModeActive) {
+            showFocusModeActiveDialog()
+        } else {
+            super.onUserLeaveHint()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (isFocusModeActive && isMinimizingBlocked) {
+            showFocusModeActiveDialog()
+        }
+    }
+
+    private fun showFocusModeActiveDialog() {
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Focus Mode Active")
+            .setMessage("Please stop the focus mode before minimizing or going back.")
+            .setPositiveButton("OK") { _, _ ->
+                isMinimizingBlocked = false
+            }
+            .setCancelable(false)
+            .create()
+
+        // Set a listener to prevent minimizing while the dialog is shown
+        dialog.setOnShowListener {
+            isMinimizingBlocked = true
+        }
+
+        dialog.show()
     }
 
     override fun onStop() {

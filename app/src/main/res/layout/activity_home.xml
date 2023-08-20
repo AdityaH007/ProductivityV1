@@ -4,56 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_20"
+
+    android:backgroundTint="@null"
+    android:background="@drawable/img"
     tools:context=".home">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="153dp"
-        android:layout_height="44dp"
-        android:background="@drawable/rndbtn"
-        android:text="Attendance manger"
+        android:id="@+id/atm"
+        android:layout_width="123dp"
+        android:layout_height="118dp"
+        android:background="@null"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571"
-        android:id="@+id/atm"/>
+        app:layout_constraintVertical_bias="0.466" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/dt"
-        android:layout_width="153dp"
-        android:layout_height="44dp"
-        android:background="@drawable/rndbtn"
-        android:text="Daily task"
+        android:layout_width="132dp"
+        android:layout_height="137dp"
+        android:background="@null"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.465" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dq"
+        android:layout_width="132dp"
+        android:layout_height="135dp"
+        android:background="@null"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.724" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/f"
-        android:layout_width="153dp"
-        android:layout_height="44dp"
-        android:background="@drawable/rndbtn"
-        android:text="focus timer"
+        android:layout_width="123dp"
+        android:layout_height="115dp"
+        android:background="@null"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.913"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintVertical_bias="0.951" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/abt"
-        android:layout_width="153dp"
-        android:layout_height="44dp"
-        android:background="@drawable/rndbtn"
-        android:text="About And Bugs"
+        android:layout_width="131dp"
+        android:layout_height="118dp"
+        android:background="@null"
+
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.824" />
+        app:layout_constraintVertical_bias="0.954" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/calc"
+        android:layout_width="129dp"
+        android:layout_height="131dp"
+        android:background="@null"
+
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.725" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

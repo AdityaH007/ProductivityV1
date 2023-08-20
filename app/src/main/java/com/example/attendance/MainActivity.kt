@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             val user = auth.currentUser
             if (user != null) {
                 // User is signed in, redirect to landing page
-                val intent = Intent(this, landing::class.java)
+                val intent = Intent(this,home::class.java)
                 startActivity(intent)
                 finish() // Optional: Close the login activity
             } else {

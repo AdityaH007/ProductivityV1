@@ -11,22 +11,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
-import attendance
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-@Suppress("DEPRECATION")
 class SubjectManagementActivity : AppCompatActivity() {
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-
-        // Make the subjects list view visible when back is pressed
-        subjectListView.visibility = View.VISIBLE
-    }
 
     private lateinit var addSubjectButton: Button
     private lateinit var subjectListView: ListView
@@ -49,15 +41,14 @@ class SubjectManagementActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        val adapter = SubjectAdapter(this, subjects)
-        subjectListView.adapter = adapter
+        loadUserSubjects() // Load user-specific subjects from Firestore
 
         addSubjectButton.setOnClickListener {
             showAddSubjectDialog()
         }
 
-        // Load user-specific subjects from Firestore
-        loadUserSubjects()
+        val adapter = SubjectAdapter(this, subjects)
+        subjectListView.adapter = adapter
     }
 
     private fun showAddSubjectDialog() {

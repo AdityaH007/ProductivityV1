@@ -16,6 +16,21 @@
         android:theme="@style/Theme.Attendance"
         tools:targetApi="31">
         <activity
+            android:name=".DailyQuotes"
+            android:exported="false" />
+        <activity
+            android:name=".QuoteSync"
+            android:exported="false" />
+        <activity
+            android:name=".qdashboard"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SGPACalculatorActivity"
+            android:exported="false" />
+        <activity
             android:name=".about"
             android:exported="false" />
         <activity

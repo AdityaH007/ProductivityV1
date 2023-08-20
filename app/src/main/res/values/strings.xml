@@ -16,4 +16,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="jk"><![CDATA[<]]></string>
+    <string name="bio">bio</string>
+    <string name="save">save</string>
+    <string name="username">username</string>
+    <string name="edit_profile">edit profile</string>
+    <string name="profile_image">profile_image</string>
 </resources>

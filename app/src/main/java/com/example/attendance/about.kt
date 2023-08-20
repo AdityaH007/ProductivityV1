@@ -27,7 +27,7 @@ class about : AppCompatActivity() {
         
         git=findViewById(R.id.github)
         git.setOnClickListener {
-            openWebsite("https://www.example.com")
+            openWebsite("https://github.com/AdityaH007/Attendance")
         }
     }
 

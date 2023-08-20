@@ -12,12 +12,10 @@ class home : AppCompatActivity() {
     private lateinit var dt:Button
     private lateinit var f:Button
     private lateinit var abt:Button
+    private lateinit var calc:Button
+    private lateinit var DQ:Button
     override fun onCreate(savedInstanceState: Bundle?) {
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
-        this.window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
@@ -42,6 +40,17 @@ class home : AppCompatActivity() {
         abt=findViewById(R.id.abt)
         abt.setOnClickListener {
             val intent=Intent(this,about::class.java)
+            startActivity(intent)
+        }
+
+        calc=findViewById(R.id.calc)
+        calc.setOnClickListener {
+            val intent =Intent(this,SGPACalculatorActivity::class.java)
+            startActivity(intent)
+        }
+        DQ=findViewById(R.id.dq)
+        DQ.setOnClickListener {
+            val intent=Intent(this,DailyQuotes::class.java)
             startActivity(intent)
         }
     }

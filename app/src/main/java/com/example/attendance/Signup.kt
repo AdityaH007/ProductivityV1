@@ -60,7 +60,7 @@ class Signup : AppCompatActivity() {
 
                         // Redirect to the landing page or another activity
                         // For example:
-                         val intent = Intent(this, landing::class.java)
+                         val intent = Intent(this, home::class.java)
                        startActivity(intent)
                     }
                 } else {

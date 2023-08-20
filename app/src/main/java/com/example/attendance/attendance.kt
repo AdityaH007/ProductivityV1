@@ -1,15 +1,15 @@
+package com.example.attendance
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CalendarView
-import android.widget.ListView
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.attendance.R
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
@@ -24,8 +24,6 @@ import java.util.*
 
 class attendance : Fragment() {
 
-
-
     private lateinit var selectedSubject: String
     private lateinit var addAttendanceButton: Button
     private lateinit var attendanceCalendarView: CalendarView
@@ -33,9 +31,9 @@ class attendance : Fragment() {
     private lateinit var pieChart: PieChart
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
-    private lateinit var datesListView: ListView
+    private lateinit var datesRecyclerView: RecyclerView
     private lateinit var datesList: ArrayList<String>
-    private lateinit var datesListAdapter: ArrayAdapter<String>
+    private lateinit var dateAdapter: DateAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,24 +50,7 @@ class attendance : Fragment() {
         addAttendanceButton = view.findViewById(R.id.addAttendanceButton)
         attendanceCalendarView = view.findViewById(R.id.attendanceCalendarView)
         pieChart = view.findViewById(R.id.pieChart)
-
-        // Find the button by its ID
-        val addDrawerButton: Button = view.findViewById(R.id.button2)
-
-// Find the DrawerLayout by its ID
-        val drawerLayout: DrawerLayout = view.findViewById(R.id.drawerLayout)
-
-// Set a click listener to toggle the drawer when the button is clicked
-        addDrawerButton.setOnClickListener {
-            if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                // If the drawer is open, close it
-                drawerLayout.closeDrawer(GravityCompat.END)
-            } else {
-                // If the drawer is closed, open it
-                drawerLayout.openDrawer(GravityCompat.END)
-            }
-        }
-
+        datesRecyclerView = view.findViewById(R.id.dateRecyclerView)
 
         // Initialize selectedDate to today's date
         selectedDate = Calendar.getInstance().time
@@ -81,10 +62,10 @@ class attendance : Fragment() {
             selectedDate = calendar.time
         }
 
-        datesListView = view.findViewById(R.id.dateListView)
         datesList = ArrayList()
-        datesListAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, datesList)
-        datesListView.adapter = datesListAdapter
+        dateAdapter = DateAdapter(datesList)
+        datesRecyclerView.adapter = dateAdapter
+        datesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         addAttendanceButton.setOnClickListener {
             showAttendanceDialog()
@@ -153,8 +134,6 @@ class attendance : Fragment() {
         }
     }
 
-
-
     private fun loadAttendanceData() {
         val currentUser = firebaseAuth.currentUser
         val uid = currentUser?.uid
@@ -178,11 +157,10 @@ class attendance : Fragment() {
                         }
                     }
                     // Notify the adapter about the changes
-                    datesListAdapter.notifyDataSetChanged()
+                    dateAdapter.notifyDataSetChanged()
                 }
         }
     }
-
 
     private fun showAttendanceExistsDialog() {
         MaterialAlertDialogBuilder(requireContext())
